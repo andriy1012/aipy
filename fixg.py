@@ -26,7 +26,10 @@ except Exception:
 if not GOOGLE_GEMINI_API_KEY:
     st.error("❌ API‑key belum ditemukan di secrets atau .env")
     st.stop()
-
+if st.secrets:
+    print("🟢 Keys in st.secrets:", list(st.secrets.keys()))
+else:
+    print("🔴 st.secrets is empty!")
 genai.configure(api_key=GOOGLE_GEMINI_API_KEY)
 
 model = genai.GenerativeModel("gemini-1.5-flash")
