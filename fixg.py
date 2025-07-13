@@ -28,6 +28,7 @@ if not GOOGLE_GEMINI_API_KEY:
 
 # DEBUG (log Cloud)
 print("🟢 Keys in st.secrets:", list(st.secrets.keys()) if st.secrets else "EMPTY")
+print("📦 KEY FROM st.secrets:", st.secrets.get("GOOGLE_GEMINI_API_KEY", "⛔ NOT FOUND"))
 
 # --------------------------------------------------
 # INIT GEMINI
