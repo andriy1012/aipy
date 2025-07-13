@@ -15,15 +15,16 @@ st.set_page_config(
 # --------------------------------------------------
 # GOOGLE GENERATIVE AI CLIENT
 
-load_dotenv()  # Muat .env
-
-GOOGLE_GEMINI_API_KEY = st.secrets.get("GOOGLE_GEMINI_API_KEY")
-
-# DEBUG UNTUK CEK ISI
-print("🟡 API KEY:", GOOGLE_GEMINI_API_KEY)
+try:
+    GOOGLE_GEMINI_API_KEY = st.secrets["GOOGLE_GEMINI_API_KEY"]
+except Exception:
+    # Fallback ke .env saat lokal
+    from dotenv import load_dotenv
+    load_dotenv()
+    GOOGLE_GEMINI_API_KEY = os.getenv("GOOGLE_GEMINI_API_KEY")
 
 if not GOOGLE_GEMINI_API_KEY:
-    st.error("❌ API‑key belum di‑set! Pastikan .env ada dan key valid.")
+    st.error("❌ API‑key belum ditemukan di secrets atau .env")
     st.stop()
 
 genai.configure(api_key=GOOGLE_GEMINI_API_KEY)
