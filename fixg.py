@@ -17,7 +17,7 @@ st.set_page_config(
 
 load_dotenv()  # Muat .env
 
-GOOGLE_GEMINI_API_KEY = os.getenv("GOOGLE_GEMINI_API_KEY")
+GOOGLE_GEMINI_API_KEY = st.secrets.get("GOOGLE_GEMINI_API_KEY")
 
 # DEBUG UNTUK CEK ISI
 print("🟡 API KEY:", GOOGLE_GEMINI_API_KEY)
